@@ -421,3 +421,29 @@ Small Device Styles
   }
 
 }
+
+.preto {
+  width: 40px; 
+  height: 40px;
+  padding: 0.5em;
+  background-color: gray;
+}
+
+.branco {
+  width: 40px; 
+  height: 40px;
+  padding: 0.5em;
+  background-color: #CCC;
+}
+
+
+.tamanhoPeca{
+  font-size: 38px;
+  opacity: 1;
+}
+
+.colunaI.linha1{
+  //background-color:green;
+}
+
+
