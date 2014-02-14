@@ -99,36 +99,34 @@ function addPeca(nomePeca){
 function adicionaPeao(){
   console.log( buscaPosicaoPeca('I','1'));
   
-  $(buscaPosicaoPeca('A','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('B','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('C','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('D','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('E','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('F','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('G','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('H','2')).html(addPeca(peaoBranco));
   
-  
-  $(buscaPosicaoPeca('A','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('B','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('C','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('D','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('E','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('F','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('G','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('H','7')).html(addPeca(peaoPreto));
+  // acho que irá diminuir.. a repetição de codico
+  // essa função usa o arguments...array.. acredito que essa mesma função da para usar para as outras peças..
+  // porém torne ela em uma função global... 
+  function peaoarguments(){
+    for (i=2; i<arguments.length;i++){
+      $(buscaPosicaoPeca(arguments[i],arguments[0])).html(addPeca(arguments[1]));
+    }
+  }
+  // o primeiro parametro (arguments[0])é a linha dos que será adicionada a peça 
+  // o segundo parametro (arguments[1]) e o segundo o nome da peca
+  peaoarguments('2',peaoBranco,'A','B','C','D','E','F','G','H');
+  peaoarguments('7',peaoBranco,'A','B','C','D','E','F','G','H');
+ 
   
 }
 
 function adicionaReis(){
+  // como aqui
   $(buscaPosicaoPeca('D','1')).html(addPeca(reiBranco));
   $(buscaPosicaoPeca('E','1')).html(addPeca(rainhaBranco));
-    
+  
   $(buscaPosicaoPeca('D','8')).html(addPeca(reiPreto));
   $(buscaPosicaoPeca('E','8')).html(addPeca(rainhaPreto));
 }
 
 function adicionaRestante(){
+  // como aqui
   $(buscaPosicaoPeca('C','1')).html(addPeca(bispoBranco));
   $(buscaPosicaoPeca('F','1')).html(addPeca(bispoBranco));  
   $(buscaPosicaoPeca('C','8')).html(addPeca(bispoPreto));
