@@ -15,7 +15,7 @@ var cavaloPreto = '&#9822;';
 var peaoPreto = '&#9823;';
 
 function converte(j){
-  console.log(j);
+
   switch(j){
     case 0: return 'A';
     case 1: return 'B';
@@ -54,6 +54,9 @@ function inicial(){
       
         
       td.setAttribute('class', classe);
+      
+      td.innerHTML = "<div class='tamanhoPeca connectedSortable'><div class='fundo'>&nbsp;</div></div>";
+      
       tr.appendChild(td);  
       
       this.preto = !this.preto;
@@ -82,7 +85,34 @@ function inicial(){
   
   //$('.colunaD+.linha2').html("Samuel");
   
-  $('.tamanhoPeca').draggable({ containment: "body" });
+  //$('.tamanhoPeca').draggable({ containment: 'table' });
+  
+  //$(buscaPosicaoPeca('A','2')+".tamanhoPeca").addClass('connectedSortable');
+  //$(buscaPosicaoPeca('A','3')+".tamanhoPeca").addClass('connectedSortable');
+  
+  $('.tamanhoPeca').sortable({
+    connectWith: ".connectedSortable",
+    forcePlaceholderSize: false
+    
+  });
+  
+  $( ".tamanhoPeca" ).disableSelection();
+  
+  $('.tamanhoPeca').bind('DOMNodeInserted', function(e) {
+    var element = e.target;
+    
+    $(element).parent().children(".fundo").remove();
+    
+  } );
+  
+  $('.tamanhoPeca').bind('DOMNodeRemoved', function(e) {
+    var element = e.target;
+    
+    if ($(element).parent().find('*').length === 0 ) {
+      $(element).parent().find('.tamanhoPeca').append('<div class="fundo">&nbsp;</div>');
+    }
+    
+   });
   
 }
 
@@ -92,35 +122,44 @@ function addPeca(nomePeca){
     return "";
   }
   
-  var peao = "<div id='P' class='tamanhoPeca "+nomePeca+"'>"+nomePeca+"</div>";
+  var peao = "<div class='tamanhoPeca "+nomePeca+" connectedSortable'><div class='peca' >"+nomePeca+"</div></div>";
   return peao;
 }
 
 function adicionaPeao(){
-  console.log( buscaPosicaoPeca('I','1'));
+  //console.log( buscaPosicaoPeca('I','1'));
   
-  $(buscaPosicaoPeca('A','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('B','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('C','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('D','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('E','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('F','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('G','2')).html(addPeca(peaoBranco));
-  $(buscaPosicaoPeca('H','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('A','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('B','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('C','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('D','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('E','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('F','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('G','2')).html(addPeca(peaoBranco));
+  //$(buscaPosicaoPeca('H','2')).html(addPeca(peaoBranco));
   
   
-  $(buscaPosicaoPeca('A','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('B','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('C','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('D','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('E','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('F','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('G','7')).html(addPeca(peaoPreto));
-  $(buscaPosicaoPeca('H','7')).html(addPeca(peaoPreto));
-  
+  //$(buscaPosicaoPeca('A','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('B','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('C','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('D','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('E','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('F','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('G','7')).html(addPeca(peaoPreto));
+  //$(buscaPosicaoPeca('H','7')).html(addPeca(peaoPreto));
+    
+  pecaarguments(2, peaoBranco, 'A','B','C','D','E','F','G','H');
+  pecaarguments(7, peaoPreto,  'A','B','C','D','E','F','G','H');
+}
+
+function pecaarguments(){
+    for (i=2; i<arguments.length;i++){
+      $(buscaPosicaoPeca(arguments[i],arguments[0])).html(addPeca(arguments[1]));
+    }
 }
 
 function adicionaReis(){
+  
   $(buscaPosicaoPeca('D','1')).html(addPeca(reiBranco));
   $(buscaPosicaoPeca('E','1')).html(addPeca(rainhaBranco));
     
@@ -129,29 +168,32 @@ function adicionaReis(){
 }
 
 function adicionaRestante(){
-  $(buscaPosicaoPeca('C','1')).html(addPeca(bispoBranco));
-  $(buscaPosicaoPeca('F','1')).html(addPeca(bispoBranco));  
-  $(buscaPosicaoPeca('C','8')).html(addPeca(bispoPreto));
-  $(buscaPosicaoPeca('F','8')).html(addPeca(bispoPreto));
+  pecaarguments(1, bispoBranco, 'C', 'F');
+  pecaarguments(8, bispoPreto, 'C', 'F');
   
-  $(buscaPosicaoPeca('B','1')).html(addPeca(cavaloBranco));
-  $(buscaPosicaoPeca('G','1')).html(addPeca(cavaloBranco));  
-  $(buscaPosicaoPeca('B','8')).html(addPeca(cavaloPreto));
-  $(buscaPosicaoPeca('G','8')).html(addPeca(cavaloPreto));
+  pecaarguments(1, cavaloBranco, 'B', 'G');
+  pecaarguments(8, cavaloPreto, 'B', 'G');
   
-  $(buscaPosicaoPeca('A','1')).html(addPeca(torreBranco));
-  $(buscaPosicaoPeca('H','1')).html(addPeca(torreBranco));  
-  $(buscaPosicaoPeca('A','8')).html(addPeca(torrePreto));
-  $(buscaPosicaoPeca('H','8')).html(addPeca(torrePreto));
-  
+  pecaarguments(1, torreBranco, 'A', 'H');
+  pecaarguments(8, torrePreto, 'A', 'H');
+    
 }
 
 function buscaPosicaoPeca( letra, numero ){
   return '.coluna' + letra + '.linha' + numero;
 }
 
+function mover(lInicial,nInicial,lFinal,nFinal){
+  var inicio = $(buscaPosicaoPeca(lInicial,nInicial));
+  
+//  $(buscaPosicaoPeca(lFinal,nFinal) + '>.tamanhoPeca').append( inicio.find('.peca').parent() );  
+  
+    $(buscaPosicaoPeca(lFinal,nFinal) + '>.tamanhoPeca').append( inicio.find('.peca').parent() );  
+  
+
+}
+
 
 $( function (){
   inicial();   
-  //exercicio();
 });
