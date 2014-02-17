@@ -159,12 +159,11 @@ function pecaarguments(){
 }
 
 function adicionaReis(){
+  pecaarguments(1, reiBranco, 'D');
+  pecaarguments(1, rainhaBranco, 'E');
   
-  $(buscaPosicaoPeca('D','1')).html(addPeca(reiBranco));
-  $(buscaPosicaoPeca('E','1')).html(addPeca(rainhaBranco));
-    
-  $(buscaPosicaoPeca('D','8')).html(addPeca(reiPreto));
-  $(buscaPosicaoPeca('E','8')).html(addPeca(rainhaPreto));
+  pecaarguments(8, reiBranco, 'D');
+  pecaarguments(8, rainhaBranco, 'E');
 }
 
 function adicionaRestante(){
