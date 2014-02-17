@@ -85,8 +85,21 @@ function inicial(){
   
   //$('.colunaD+.linha2').html("Samuel");
   
-  //$('.tamanhoPeca').draggable({ containment: 'table' });
+  /*
+  $('.tamanhoPeca').draggable({ containment: 'table', 
+  start: function() {
+       // funcoes 
+      },
+      drag: function() {
+        // funcoes 
+      },
+      stop: function() {
+        // funcoes 
+      }
   
+  
+  });
+*/  
   //$(buscaPosicaoPeca('A','2')+".tamanhoPeca").addClass('connectedSortable');
   //$(buscaPosicaoPeca('A','3')+".tamanhoPeca").addClass('connectedSortable');
   
