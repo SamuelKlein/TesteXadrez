@@ -1,27 +1,27 @@
-.preto {
-  font-family:serif;
+.preco, .branco, .tamanhoPeca{
+  /* tamanhos e estrutura aplicada em mais de um objeto*/
   width: 40px; 
   height: 40px;
   padding: 0.5em;
+}
+
+.preto {
+  font-family:serif;
   background-color: gray;
 }
 
 .branco {
-  width: 40px; 
-  height: 40px;
-  padding: 0.5em;
   background-color: #CCC;
 }
 
 
 .tamanhoPeca{
-  width: 40px; 
-  height: 40px;
+  padding: 0em;
   font-size: 38px;
   opacity: 1;
 }
 
 .colunaI.linha1{
-  //background-color:green;
+  /*background-color:green; */
 }
 
